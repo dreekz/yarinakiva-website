@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.site_name }}</title>
+    {% for path in config.extra_css %}
+        <link href="{{ path }}" rel="stylesheet">
+    {% endfor %}
+</head>
+<body class="bg-blue-600">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 text-center text-white py-20">
+        <h1 class="text-5xl font-bold mb-4">Yarin Akiva</h1>
+        <p class="text-2xl text-blue-100 mb-8">DevOps & Cloud Infrastructure Specialist</p>
+        
+        <!-- Social Icons -->
+        <div class="flex justify-center space-x-6 mb-8">
+            <a href="https://github.com/dreekz" class="text-white text-2xl hover:text-blue-200">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/yarinakiva/" class="text-white text-2xl hover:text-blue-200">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:yarin3db@gmail.com" class="text-white text-2xl hover:text-blue-200">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+
+        <!-- Terminal Icon -->
+        <div class="text-center mt-8">
+            <i class="fas fa-terminal text-6xl text-blue-200"></i>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-8 py-4">
+                <li><a href="#about" class="text-blue-600 hover:text-blue-800">About</a></li>
+                <li><a href="#certificates" class="text-blue-600 hover:text-blue-800">Certificates</a></li>
+                <li><a href="#projects" class="text-blue-600 hover:text-blue-800">Projects</a></li>
+                <li><a href="#contact" class="text-blue-600 hover:text-blue-800">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="bg-gray-50">
+        {{ page.content }}
+    </div>
+
+    {% for path in config.extra_javascript %}
+        <script src="{{ path }}"></script>
+    {% endfor %}
+</body>
+</html>

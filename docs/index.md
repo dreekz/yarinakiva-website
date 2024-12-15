@@ -1,0 +1,80 @@
+<div id="about" class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
+    <div class="max-w-3xl mx-auto">
+        <p class="text-lg text-gray-700 leading-relaxed">
+            Hi! I'm Yarin, a DevOps and cloud engineer specializing in AWS infrastructure and F5 technologies. 
+            With professional certifications in F5 BIG-IP and experience in cloud architecture, I focus on 
+            building robust, scalable infrastructure solutions.
+        </p>
+    </div>
+</div>
+
+<div id="certificates" class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Professional Certifications</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- F5 LTM Certificate -->
+            <div class="certificate-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('ltm-cert')">
+                <img src="assets/images/ltm-certificate.jpg" alt="F5 LTM Certificate" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold">Configuring BIG-IP Local Traffic Manager</h3>
+                    <p class="text-gray-600">Completed: September 19, 2024</p>
+                    <p class="text-gray-600">CPE Hours: 21</p>
+                </div>
+            </div>
+            
+            <!-- F5 BIG-IP Certificate -->
+            <div class="certificate-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openModal('bigip-cert')">
+                <img src="assets/images/bigip-certificate.jpg" alt="F5 BIG-IP Certificate" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold">Administering BIG-IP</h3>
+                    <p class="text-gray-600">Completed: September 16, 2024</p>
+                    <p class="text-gray-600">CPE Hours: 14</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="projects" class="py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                <h3 class="text-xl font-semibold mb-4">Static Website on AWS</h3>
+                <p class="text-gray-600 mb-4">
+                    Implemented a static website using AWS S3, CloudFront, and Route 53 with SSL/TLS security.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">AWS</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">S3</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">CloudFront</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="bg-gray-800 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+        <p class="text-xl text-gray-300 mb-8">
+            Interested in collaborating or discussing opportunities?
+        </p>
+        <a href="mailto:yarin3db@gmail.com" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors inline-block">
+            Contact Me
+        </a>
+    </div>
+</div>
+
+<footer class="bg-gray-900 text-gray-400 py-8 text-center">
+    <p>&copy; 2024 Yarin Akiva. All rights reserved.</p>
+</footer>
+
+<!-- Modal for Certificates -->
+<div id="certificate-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modal-image" src="" alt="Certificate">
+    </div>
+</div>
