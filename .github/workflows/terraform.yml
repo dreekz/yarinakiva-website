@@ -1,0 +1,44 @@
+name: Terraform
+
+on:
+  push:
+    branches:
+      - main        # תריץ את הפייפליין על כל דחיפה ל-main
+  pull_request:
+    branches:
+      - main        # גם כאשר יש PR למיין
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest  # בחר את מערכת ההפעלה של ה-GitHub Runner
+
+    steps:
+      # 1. Checkout של הקוד שלך
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. התקנה של Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"  # הגדר את גרסת Terraform שאתה רוצה להשתמש בה
+
+      # 3. הגדרת AWS credentials (השתמש בסודות שהגדרת בגיטאב)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # הגדר את האזור שלך ב-AWS
+
+      # 4. יצירת init
+      - name: Terraform Init
+        run: terraform init
+
+      # 5. יצירת plan
+      - name: Terraform Plan
+        run: terraform plan
+
+      # 6. ביצוע apply (השלב האחרון שמבצע את השינויים)
+      - name: Terraform Apply
+        run: terraform apply -auto-approve  # ביצוע שינויים ב-AWS ללא דרישת אישור ידני

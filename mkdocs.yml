@@ -1,29 +1,27 @@
 site_name: Yarin Akiva - Portfolio
 theme: 
     name: material
+    language: en
     custom_dir: overrides
     font: false
-    features: []  # מסיר את כל התכונות המיוחדות
+    features: []
     palette:
-        primary: indigo
-        accent: indigo
-    icon:
-        logo: material/code  # מסיר את האייקון המובנה
-    language: en
-    search: false  # מבטל את החיפוש
-    navigation_depth: 0  # מבטל את תפריט הניווט הצדדי
+        scheme: light
+
+plugins: []  # מבטל את כל הפלאגינים (כולל חיפוש)
 
 extra_css:
     - https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css
     - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css
     - assets/css/custom.css
 
-extra_javascript:
-    - assets/js/script.js
-
 markdown_extensions:
     - meta
     - attr_list
     - md_in_html
 
-nav: []  
+nav:
+    - Home: index.md
+    - About: about.md
+    - Certificates: certificates.md
+    - Projects: projects.md
