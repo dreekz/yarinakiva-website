@@ -1,6 +1,56 @@
+/* גלילה חלקה */
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
+/* אפקט fading לסימן > */
+@keyframes fading {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.terminal-icon {
+    animation: fading 2s infinite ease-in-out;
+}
+
+/* תפריט צמוד לחלק העליון בעת גלילה */
+nav {
+    position: sticky; /* שומר על מיקום קבוע בראש המסך */
+    top: 0;
+    background-color: white; /* רקע לבן */
+    z-index: 1000; /* מציב את התפריט מעל התוכן */
+    border-bottom: 1px solid #ddd; /* קו תחתון דק להפרדה */
+}
+
+nav ul li a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+nav ul li a:hover {
+    color: #0056b3;
+    background-color: #e9ecef;
+}
+
+/* סרגל גלילה בצבע לבן */
+::-webkit-scrollbar {
+    width: 10px; /* רוחב הגלילה */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* צבע לבן */
+    border: 2px solid #f1f1f1; /* גבול אפור בהיר */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ffffff; /* רקע לבן */
+}
+
+/* אנימציות למודל */
 .modal {
     display: none;
     position: fixed;
@@ -40,6 +90,7 @@ html {
     cursor: pointer;
 }
 
+/* אפקט Hover לכרטיסי תעודות */
 .certificate-card {
     transition: transform 0.3s ease;
 }
@@ -48,6 +99,7 @@ html {
     transform: translateY(-5px);
 }
 
+/* אנימציה לאייקונים חברתיים */
 .social-icon {
     transition: transform 0.3s ease, color 0.3s ease;
 }
