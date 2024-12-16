@@ -1,6 +1,7 @@
 name: Deploy Static Website to AWS S3 and CloudFront
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
