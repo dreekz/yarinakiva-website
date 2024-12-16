@@ -1,0 +1,14 @@
+# MkDocs build directory
+site/
+
+# Python
+_pycache_/
+*.pyc
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE Settings
+.idea/
+.vscode/
