@@ -41,7 +41,7 @@ jobs:
       # שלב 6: העלאת האתר ל-S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./site s3://yarinakiva-dev-website2 --delete
+          aws s3 sync ./site s3://yarinakiva-dev-website2 --delete --cache-control "no-cache, no-store, must-revalidate"
 
       # שלב 7: ביצוע Invalidation ב-CloudFront
       - name: Invalidate CloudFront cache
