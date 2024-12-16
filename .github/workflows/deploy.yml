@@ -1,41 +1,49 @@
 name: Deploy Static Website to AWS S3 and CloudFront
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - main
+      - main  # מפעיל את ה-Workflow בכל דחיפה ל-main
+  workflow_dispatch:  # מאפשר הרצה ידנית דרך GitHub Actions
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # הרצה על Ubuntu
 
     steps:
+      # שלב 1: Checkout של הקוד מהריפו
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # שלב 2: התקנת Python ו-MkDocs
       - name: Install Python and MkDocs
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
+      # שלב 3: התקנת התלויות של MkDocs
       - name: Install MkDocs dependencies
         run: |
           pip install mkdocs mkdocs-material
 
+      # שלב 4: בניית האתר באמצעות MkDocs
       - name: Build MkDocs site
         run: mkdocs build
 
+      # שלב 5: הגדרת AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # עדכן לאזור של ה-Bucket שלך
+
+      # שלב 6: העלאת האתר ל-S3
       - name: Deploy to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws s3 sync ./site s3://yarinakiva-dev-website2 --delete
 
+      # שלב 7: ביצוע Invalidation ב-CloudFront
       - name: Invalidate CloudFront cache
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           aws cloudfront create-invalidation --distribution-id E1O0O1DKZKX1E2 --paths "/*"
