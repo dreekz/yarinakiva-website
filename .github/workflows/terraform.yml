@@ -1,32 +1,24 @@
 name: Terraform Deployment
-
 on:
   workflow_dispatch:
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0
-
       - name: Set up AWS credentials with IAM role
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::891377295987:role/github-actions-role
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
-
       - name: Initialize Terraform
         run: terraform init
-
       - name: Run Terraform Plan
         run: terraform plan -out=tfplan
-
       - name: Apply Terraform Plan
         run: terraform apply -auto-approve tfplan
