@@ -1,14 +1,62 @@
-# MkDocs build directory
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+.env
+
+# MkDocs
 site/
 
-# Python
-_pycache_/
-*.pyc
-
-# Operating System Files
-.DS_Store
-Thumbs.db
-
-# IDE Settings
+# IDE
 .idea/
 .vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraformrc
+terraform.rc
+
+# AWS
+.aws/
+aws.json
+
+# Node modules (אם יש שימוש ב-JavaScript)
+node_modules/
+package-lock.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

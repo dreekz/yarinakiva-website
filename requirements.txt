@@ -1,2 +1,24 @@
-mkdocs>=1.4.0
-mkdocs-material>=9.0.0
+# MkDocs וערכת נושא
+mkdocs>=1.5.3
+mkdocs-material>=9.5.3
+mkdocs-material-extensions>=1.3.1
+
+# הרחבות Markdown
+pymdown-extensions>=10.7
+markdown>=3.5.1
+mdx_truly_sane_lists>=1.3
+
+# תלויות נוספות
+Pygments>=2.17.2
+pyyaml>=6.0.1
+watchdog>=3.0.0
+python-markdown-math>=0.8
+Pillow>=10.2.0
+
+# כלי פיתוח
+black>=23.12.1
+flake8>=7.0.0
+pre-commit>=3.6.0
+
+# תלויות אופציונליות להרחבת פונקציונליות
+jinja2>=3.1.2

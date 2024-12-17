@@ -16,11 +16,13 @@ html {
 
 /* תפריט צמוד לחלק העליון בעת גלילה */
 nav {
-    position: sticky; /* שומר על מיקום קבוע בראש המסך */
+    position: sticky;
     top: 0;
-    background-color: white; /* רקע לבן */
-    z-index: 1000; /* מציב את התפריט מעל התוכן */
-    border-bottom: 1px solid #ddd; /* קו תחתון דק להפרדה */
+    background-color: white;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 nav ul li a {
@@ -28,29 +30,30 @@ nav ul li a {
     font-weight: bold;
     text-decoration: none;
     padding: 10px 15px;
+    transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
     color: #0056b3;
     background-color: #e9ecef;
+    border-radius: 4px;
 }
 
-/* סרגל גלילה בצבע לבן */
+/* סרגל גלילה מותאם */
 ::-webkit-scrollbar {
-    width: 10px; /* רוחב הגלילה */
+    width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #ffffff; /* צבע לבן */
-    border: 2px solid #f1f1f1; /* גבול אפור בהיר */
-    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #ffffff; /* רקע לבן */
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* אנימציות למודל */
+/* סגנונות מודל */
 .modal {
     display: none;
     position: fixed;
@@ -58,27 +61,37 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .modal.active {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
 }
 
 .modal-content {
     max-width: 90%;
     max-height: 90vh;
     position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
 }
 
 .modal-content img {
     max-width: 100%;
     max-height: 90vh;
     object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .close-modal {
@@ -88,20 +101,37 @@ nav ul li a:hover {
     color: white;
     font-size: 30px;
     cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    padding: 5px;
 }
 
-/* אפקט Hover לכרטיסי תעודות */
+.close-modal:hover {
+    opacity: 1;
+}
+
+/* אנימציות לכרטיסי תעודות */
 .certificate-card {
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
 .certificate-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* אנימציה לאייקונים חברתיים */
+.certificate-card img {
+    transition: transform 0.3s ease;
+}
+
+.certificate-card:hover img {
+    transform: scale(1.05);
+}
+
+/* אנימציות לאייקונים חברתיים */
 .social-icon {
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-icon:hover {
@@ -109,7 +139,32 @@ nav ul li a:hover {
     color: #60A5FA;
 }
 
+/* התאמות לספארי */
+@supports (-webkit-touch-callout: none) {
+    .modal-content {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    
+    .certificate-card {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
 /* Override Material theme styles */
 .md-content {
     background-color: transparent;
+}
+
+/* תיקונים לתצוגה במובייל */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+    
+    .close-modal {
+        top: -35px;
+        right: 5px;
+    }
 }
