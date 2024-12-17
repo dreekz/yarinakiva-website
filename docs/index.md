@@ -1,21 +1,4 @@
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-    <!-- Hero Section -->
-    <div id="hero" class="container mx-auto px-4 py-16">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Yarin Akiva
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-8">
-                DevOps Engineer & Cloud Solutions Architect
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="#about" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                    Learn More
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- About Section -->
     <div id="about" class="container mx-auto px-4 py-16">
         <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
