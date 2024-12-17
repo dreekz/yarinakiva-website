@@ -35,20 +35,51 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4">
-            <ul class="flex justify-center space-x-8 py-4">
-                <li><a href="#about" class="text-blue-600 hover:text-blue-800">About</a></li>
-                <li><a href="#certificates" class="text-blue-600 hover:text-blue-800">Certificates</a></li>
-                <li><a href="#projects" class="text-blue-600 hover:text-blue-800">Projects</a></li>
-                <li><a href="#contact" class="text-blue-600 hover:text-blue-800">Contact</a></li>
-            </ul>
+            <!-- Desktop Menu -->
+            <div class="hidden md:block">
+                <ul class="flex justify-center space-x-8 py-4">
+                    <li><a href="#about" class="text-blue-600 hover:text-blue-800 px-3 py-2 transition-colors duration-300">About</a></li>
+                    <li><a href="#certificates" class="text-blue-600 hover:text-blue-800 px-3 py-2 transition-colors duration-300">Certificates</a></li>
+                    <li><a href="#projects" class="text-blue-600 hover:text-blue-800 px-3 py-2 transition-colors duration-300">Projects</a></li>
+                    <li><a href="#contact" class="text-blue-600 hover:text-blue-800 px-3 py-2 transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex justify-between items-center py-4">
+                <span class="text-blue-600 font-bold">Yarin Akiva</span>
+                <button id="menu-toggle" class="text-blue-600 hover:text-blue-800 focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <ul class="py-2">
+                    <li><a href="#about" class="block px-4 py-2 text-blue-600 hover:bg-blue-50 transition-colors duration-300">About</a></li>
+                    <li><a href="#certificates" class="block px-4 py-2 text-blue-600 hover:bg-blue-50 transition-colors duration-300">Certificates</a></li>
+                    <li><a href="#projects" class="block px-4 py-2 text-blue-600 hover:bg-blue-50 transition-colors duration-300">Projects</a></li>
+                    <li><a href="#contact" class="block px-4 py-2 text-blue-600 hover:bg-blue-50 transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="bg-gray-50">
         {{ page.content }}
+    </div>
+
+    <!-- Modal for Certificates -->
+    <div id="certificate-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" src="" alt="Certificate">
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -58,6 +89,23 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+
         // Initialize modals
         const modal = document.getElementById('certificate-modal');
         if (modal) {
@@ -101,6 +149,10 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu after clicking a link
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
                 }
             });
         });

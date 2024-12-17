@@ -3,18 +3,25 @@ html {
     scroll-behavior: smooth;
 }
 
-/* אפקט fading לסימן > */
-@keyframes fading {
-    0% { opacity: 0.2; }
-    50% { opacity: 1; }
-    100% { opacity: 0.2; }
+/* תיקון למלבן הכחול בצדדים */
+body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.terminal-icon {
-    animation: fading 2s infinite ease-in-out;
+.md-main {
+    overflow-x: hidden;
 }
 
-/* תפריט צמוד לחלק העליון בעת גלילה */
+.md-content {
+    overflow-x: hidden;
+    max-width: 100%;
+    background-color: transparent;
+}
+
+/* נגישות נאב-בר ותיקוני תצוגה */
 nav {
     position: sticky;
     top: 0;
@@ -23,6 +30,7 @@ nav {
     border-bottom: 1px solid #ddd;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
 nav ul li a {
@@ -37,6 +45,17 @@ nav ul li a:hover {
     color: #0056b3;
     background-color: #e9ecef;
     border-radius: 4px;
+}
+
+/* אפקט fading לסימן > */
+@keyframes fading {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.terminal-icon {
+    animation: fading 2s infinite ease-in-out;
 }
 
 /* סרגל גלילה מותאם */
@@ -152,13 +171,21 @@ nav ul li a:hover {
     }
 }
 
-/* Override Material theme styles */
-.md-content {
-    background-color: transparent;
-}
-
-/* תיקונים לתצוגה במובייל */
+/* התאמות למובייל */
 @media (max-width: 768px) {
+    nav {
+        padding: 0;
+    }
+    
+    .mobile-menu-active {
+        display: block !important;
+    }
+    
+    #mobile-menu {
+        border-top: 1px solid #eee;
+        transition: all 0.3s ease;
+    }
+
     .modal-content {
         width: 95%;
     }

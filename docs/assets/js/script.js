@@ -1,79 +1,56 @@
+// כאשר ה-DOM נטען במלואו
 document.addEventListener('DOMContentLoaded', function() {
-    // פונקציה לפתיחת המודל
-    function openModal(certType) {
-        const modal = document.getElementById('certificate-modal');
-        const modalImg = document.getElementById('modal-image');
-        
-        // עדכון נתיב התמונה ללא '../'
-        if (certType === 'ltm-cert') {
-            modalImg.src = 'assets/images/ltm-certificate.jpg';
-        } else if (certType === 'bigip-cert') {
-            modalImg.src = 'assets/images/bigip-certificate.jpg';
-        }
-        
-        modal.classList.add('active');
-        
-        // מניעת גלילה בגוף העמוד כשהמודל פתוח
-        document.body.style.overflow = 'hidden';
+    // ניהול תפריט מובייל
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // אם קיימים האלמנטים של תפריט המובייל
+    if (menuToggle && mobileMenu) {
+        // הוספת אירוע לחיצה על כפתור התפריט
+        menuToggle.addEventListener('click', function() {
+            // הוספה/הסרה של מחלקת hidden לתפריט
+            mobileMenu.classList.toggle('hidden');
+        });
     }
 
-    // פונקציה לסגירת המודל
-    function closeModal() {
-        const modal = document.getElementById('certificate-modal');
-        modal.classList.remove('active');
-        
-        // החזרת הגלילה לגוף העמוד
-        document.body.style.overflow = '';
-    }
-
-    // הוספת מאזיני לחיצה לכרטיסי התעודות
-    const certificateCards = document.querySelectorAll('.certificate-card');
-    certificateCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const certType = this.getAttribute('onclick').match(/'(.*?)'/)[1];
-            openModal(certType);
+    // סגירת תפריט מובייל בעת לחיצה על לינק
+    const mobileLinks = document.querySelectorAll('#mobile-menu a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // הסתרת התפריט לאחר לחיצה על לינק
+            mobileMenu.classList.add('hidden');
         });
     });
 
-    // סגירת המודל בלחיצה מחוץ לתמונה
-    const modal = document.getElementById('certificate-modal');
-    modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
+    // ניהול מודל לתעודות
+    const modal = document.querySelector('.modal');
+    const modalImg = document.querySelector('.modal-content img');
+    const closeModal = document.querySelector('.close-modal');
+    const certificateImages = document.querySelectorAll('.certificate-card img');
+
+    // הוספת אירוע לחיצה לכל תמונת תעודה
+    certificateImages.forEach(img => {
+        img.addEventListener('click', function() {
+            // הצגת התמונה במודל
+            modalImg.src = this.src;
+            modal.classList.add('active');
+            // מניעת גלילה ברקע
+            document.body.style.overflow = 'hidden';
+        });
     });
 
     // סגירת המודל בלחיצה על כפתור הסגירה
-    const closeButton = document.querySelector('.close-modal');
-    if (closeButton) {
-        closeButton.addEventListener('click', closeModal);
-    }
+    closeModal.addEventListener('click', function() {
+        modal.classList.remove('active');
+        // החזרת אפשרות הגלילה
+        document.body.style.overflow = 'auto';
+    });
 
-    // סגירת המודל בלחיצה על ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
+    // סגירת המודל בלחיצה על הרקע
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
     });
 });
-
-// חשיפת הפונקציות לשימוש גלובלי
-window.openModal = function(certType) {
-    const modal = document.getElementById('certificate-modal');
-    const modalImg = document.getElementById('modal-image');
-    
-    if (certType === 'ltm-cert') {
-        modalImg.src = 'assets/images/ltm-certificate.jpg';
-    } else if (certType === 'bigip-cert') {
-        modalImg.src = 'assets/images/bigip-certificate.jpg';
-    }
-    
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-};
-
-window.closeModal = function() {
-    const modal = document.getElementById('certificate-modal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-};
