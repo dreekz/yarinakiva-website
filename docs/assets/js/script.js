@@ -7,9 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // אם קיימים האלמנטים של תפריט המובייל
     if (menuToggle && mobileMenu) {
         // הוספת אירוע לחיצה על כפתור התפריט
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            // מניעת התפשטות האירוע למסמך
+            e.stopPropagation();
             // הוספה/הסרה של מחלקת hidden לתפריט
             mobileMenu.classList.toggle('hidden');
+        });
+
+        // סגירת תפריט בלחיצה מחוץ לתפריט
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     }
 
@@ -19,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             // הסתרת התפריט לאחר לחיצה על לינק
             mobileMenu.classList.add('hidden');
+            // גלילה חלקה למיקום המבוקש
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
