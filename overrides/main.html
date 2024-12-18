@@ -7,7 +7,7 @@
     <meta name="keywords" content="DevOps, Cloud, AWS, F5, BIG-IP, Infrastructure">
     <title>{{ config.site_name }}</title>
     {% for path in config.extra_css %}
-        <link href="{{ path }}" rel="stylesheet">
+        <link href="{{ path }}" rel="stylesheet"> 
     {% endfor %}
 </head>
 <body class="bg-blue-600">
@@ -48,8 +48,7 @@
             </div>
             
             <!-- Mobile Menu Button -->
-            <div class="md:hidden flex justify-between items-center py-4">
-                <span class="text-blue-600 font-bold">Yarin Akiva</span>
+            <div class="md:hidden flex justify-end py-4">
                 <button id="menu-toggle" class="text-blue-600 hover:text-blue-800 focus:outline-none" aria-label="Toggle menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
